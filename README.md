@@ -1,4 +1,4 @@
-# Assignment 1 — Builder Pattern: Burger Builder
+# Assignment 1 - Builder Pattern: Burger Builder
 
 ## Description
 This project implements the Builder Creational Design Pattern in Java (JDK 17). It provides a step-by-step construction process for creating customized `Burger` objects with different requirements (Beef Burger vs. Vegan Burger).
