@@ -1,3 +1,7 @@
+package builder;
+
+import model.Burger;
+
 public interface BurgerBuilder {
     BurgerBuilder setBun(String bun);
     BurgerBuilder setPatty(String patty);

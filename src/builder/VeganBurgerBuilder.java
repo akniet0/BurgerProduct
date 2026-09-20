@@ -1,12 +1,20 @@
+package builder;
+
+import model.Burger;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class BeefBurgerBuilder implements BurgerBuilder {
+public class VeganBurgerBuilder implements BurgerBuilder {
     private String bun;
     private String patty;
     private String cheese;
     private final List<String> toppings = new ArrayList<>();
     private final List<String> sauces = new ArrayList<>();
+
+    private static final List<String> NON_VEGAN_ITEMS = List.of(
+            "beef", "meat", "chicken", "cheese", "mayo"
+    );
 
     @Override
     public BurgerBuilder setBun(String bun) {
@@ -44,16 +52,33 @@ public class BeefBurgerBuilder implements BurgerBuilder {
 
     @Override
     public Burger build() {
-        validateState();
-        return new Burger(bun, patty, cheese, toppings, sauces);
+        validateVegan();
+        return new model.VeganBurger(bun, patty, cheese, toppings, sauces);
     }
 
-    private void validateState() {
+    private void validateVegan() {
         if (bun == null || bun.isBlank()) {
             throw new IllegalStateException("Error: Bun cannot be empty.");
         }
-        if (patty == null || !patty.toLowerCase().contains("beef")) {
-            throw new IllegalStateException("Error: A Beef Burger must use a beef patty.");
+        if (patty == null || patty.isBlank()) {
+            throw new IllegalStateException("Error: Patty cannot be empty.");
+        }
+
+        checkIsVegan(patty, "patty");
+        if (cheese != null) {
+            checkIsVegan(cheese, "cheese");
+        }
+        toppings.forEach(t -> checkIsVegan(t, "topping"));
+        sauces.forEach(s -> checkIsVegan(s, "sauce"));
+    }
+
+    private void checkIsVegan(String item, String type) {
+        for (String badWord : NON_VEGAN_ITEMS) {
+            if (item.toLowerCase().contains(badWord)) {
+                throw new IllegalStateException(
+                        "Error: Cannot put '" + item + "' in a Vegan model.Burger!"
+                );
+            }
         }
     }
 }

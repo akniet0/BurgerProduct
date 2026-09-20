@@ -1,3 +1,7 @@
+package builder;
+
+import model.Burger;
+
 public class BurgerDirector {
 
 

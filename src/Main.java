@@ -1,34 +1,37 @@
+import abstractfactory.ClassicBeefMealFactory;
+import abstractfactory.HealthyVeganMealFactory;
+import abstractfactory.MealCombo;
+import abstractfactory.MealFactory;
+import factorymethod.BeefBurgerRestaurant;
+import factorymethod.Restaurant;
+import factorymethod.VeganBurgerRestaurant;
+import model.Burger;
+
 public class Main {
     public static void main(String[] args) {
-        BurgerDirector director = new BurgerDirector();
+        System.out.println("Factory Method: ");
 
-        BurgerBuilder beefBuilder = new BeefBurgerBuilder();
-        Burger classicBeef = director.makeClassicBeefBurger(beefBuilder);
-        System.out.println("Classic Beef Burger:");
-        System.out.println(classicBeef);
+        Restaurant beefPlace = new BeefBurgerRestaurant();
+        Burger beefOrder = beefPlace.orderBurger();
+        System.out.println(beefOrder);
+        System.out.println();
 
-        BurgerBuilder veganBuilder = new VeganBurgerBuilder();
-        Burger classicVegan = director.makeClassicVeganBurger(veganBuilder);
-        System.out.println("Classic Vegan Burger:");
-        System.out.println(classicVegan);
-
-        Burger customBurger = new BeefBurgerBuilder()
-                .setBun("White Bread")
-                .setPatty("Beef Patty")
-                .addTopping("Pickles")
-                .addSauce("Mustard")
-                .build();
-        System.out.println("Custom Burger:");
-        System.out.println(customBurger);
+        Restaurant veganPlace = new VeganBurgerRestaurant();
+        Burger veganOrder = veganPlace.orderBurger();
+        System.out.println(veganOrder);
+        System.out.println();
 
 
-        try {
-            new VeganBurgerBuilder()
-                    .setBun("White Bread")
-                    .setPatty("Beef Patty")
-                    .build();
-        } catch (IllegalStateException e) {
-            System.out.println("Caught expected error: " + e.getMessage());
-        }
+        System.out.println("Abstract Factory: ");
+
+        System.out.println("Serving Customer #1 (Classic Beef Combo):");
+        MealFactory beefComboFactory = new ClassicBeefMealFactory();
+        MealCombo beefCombo = new MealCombo(beefComboFactory);
+        beefCombo.displayMeal();
+
+        System.out.println("Serving Customer #2 (Healthy Vegan Combo):");
+        MealFactory veganComboFactory = new HealthyVeganMealFactory();
+        MealCombo veganCombo = new MealCombo(veganComboFactory);
+        veganCombo.displayMeal();
     }
 }
