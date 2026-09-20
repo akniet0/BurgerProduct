@@ -1,18 +1,50 @@
-# Assignment 1 - Builder Pattern: Burger Builder
+# Assignment 2 - Burger Restaurant
 
-## Description
-This project implements the Builder Creational Design Pattern in Java (JDK 17). It provides a step-by-step construction process for creating customized `Burger` objects with different requirements (Beef Burger vs. Vegan Burger).
+---
 
-## Structure
-- **Product**: `Burger.java`
-- **Builder Interface**: `BurgerBuilder.java`
-- **Concrete Builders**: 
-  - `BeefBurgerBuilder.java` (enforces beef patty)
-  - `VeganBurgerBuilder.java` (enforces strict plant-based ingredients)
-- **Director**: `BurgerDirector.java` (builds preset menu recipes)
-- **Client**: `Main.java` (demonstrates builds and validation checks)
+## Overview
+
+This repository demonstrates the implementation and practical usage of creational design patterns within an evolving fast-food restaurant system:
+1. **Builder Pattern (Assignment 1):** Handles step-by-step internal construction and validation of individual burger components (buns, patties, toppings, sauces).
+2. **Factory Method (Assignment 2, Part A):** Encapsulates single-product instantiation behind specialized kitchen creators (`BeefBurgerRestaurant`, `VeganBurgerRestaurant`) without coupling base order logic to concrete types.
+3. **Abstract Factory (Assignment 2, Part B):** Produces families of related products (`Burger`, `Drink`, `Side`) via unified factory interfaces (`ClassicBeefMealFactory`, `HealthyVeganMealFactory`), ensuring menu and dietary consistency across combo packages.
+
+---
+
+## Project Structure
+
+```text
+src/
+├── builder/                       
+│   ├── BeefBurgerBuilder.java
+│   ├── BurgerBuilder.java
+│   ├── BurgerDirector.java
+│   └── VeganBurgerBuilder.java
+├── factorymethod/                 
+│   ├── BeefBurgerRestaurant.java  
+│   ├── Restaurant.java            
+│   └── VeganBurgerRestaurant.java 
+├── abstractfactory/               
+│   ├── ClassicBeefMealFactory.java
+│   ├── HealthyVeganMealFactory.java
+│   ├── MealCombo.java             
+│   └── MealFactory.java           
+├── model/                         
+│   ├── BeefBurger.java            
+│   ├── Burger.java                
+│   ├── Drink.java                 
+│   ├── Side.java                  
+│   ├── VeganBurger.java           
+│   └── items/                     
+│       ├── ColaDrink.java
+│       ├── FriesSide.java
+│       ├── SaladSide.java
+│       └── SmoothieDrink.java
+└── Main.java                      
+
+```
 
 ## How to Run
-1. Open the project in IntelliJ IDEA (or any Java IDE).
-2. Ensure JDK 17 is selected.
-3. Run `Main.java`.
+Open the project in IntelliJ IDEA (or any JDK 17+ environment).
+
+Compile and run src/Main.java.
