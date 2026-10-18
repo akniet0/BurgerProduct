@@ -1,19 +1,16 @@
-# Burger Product - Bridge Design Pattern
+# Burger Kitchen Order System — Facade Pattern
 
-Implementation of the Bridge structural design pattern in Java (JDK 17).
+## Overview
+This project demonstrates the **Facade Structural Design Pattern** in Java (JDK 17).
+It provides a unified, simplified interface (`KitchenFacade`) over a multi-stage restaurant kitchen subsystem composed of inventory checks, grill operations, assembly layering, and packaging.
 
-## Domain Overview
-- **Abstraction Hierarchy**: `Burger` (Base), `Cheeseburger`, `SpicyBBQBurger`
-- **Implementor Hierarchy**: `CookingEngine` (Interface), `FlameGrillEngine`, `SmashGriddleEngine`
+## Subsystem Classes
+- **`InventoryManager`**: Checks ingredient availability and updates stock counts.
+- **`GrillStation`**: Manages cooking times and temperatures per patty type.
+- **`AssemblyStation`**: Sequences bread toasting, patty placement, and topping application.
+- **`PackagingStation`**: Wraps the final product and boxes combo items.
 
-By separating the high-level recipe logic from the cooking hardware execution, both hierarchies can evolve independently without causing a combinatorial explosion of subclasses.
-
-## How to Compile and Run
-Open terminal in the project root directory:
-
+## How to Run
 ```bash
-# Compile all source files
-javac -d out src/implementor/*.java src/abstraction/*.java src/Main.java
-
-# Run the client demonstration
+javac src/subsystem/*.java src/facade/*.java src/Main.java -d out
 java -cp out Main
