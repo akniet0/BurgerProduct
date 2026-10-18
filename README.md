@@ -1,4 +1,4 @@
-# Burger Kitchen Order System — Facade Pattern
+# Burger Kitchen Order System | Facade Pattern
 
 ## Overview
 This project demonstrates the **Facade Structural Design Pattern** in Java (JDK 17).
