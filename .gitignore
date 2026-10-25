@@ -1,8 +1,10 @@
-#### `.gitignore`
-```gitignore
-out/
-bin/
-*.class
+# IntelliJ IDEA
 .idea/
 *.iml
+out/
+
+# macOS system files
 .DS_Store
+
+# Java class files
+*.class
